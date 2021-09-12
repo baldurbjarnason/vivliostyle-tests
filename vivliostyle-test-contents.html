@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <meta name="author" content="Baldur Bjarnason" />
+    <title>The Single-Page-App Morality Play</title>
+    <style>
+      @font-face {
+        font-family: "Literata";
+        src: url("pdf/Literata/Literata-Regular.ttf");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Literata";
+        src: url("pdf/Literata/Literata-Italic.ttf");
+        font-style: Italic;
+      }
+      @font-face {
+        font-family: "Literata";
+        src: url("pdf/Literata/Literata-Bold.ttf");
+        font-weight: 600;
+      }
+      @font-face {
+        font-family: "Literata";
+        src: url("pdf/Literata/Literata-BoldItalic.ttf");
+        font-weight: 600;
+        font-style: italic;
+      }
+      @font-face {
+        font-family: "Literata36";
+        src: url("pdf/Literata_36pt/Literata_36pt-Regular.ttf");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "Literata36";
+        src: url("pdf/Literata_36pt/Literata_36pt-Italic.ttf");
+        font-style: Italic;
+      }
+      @font-face {
+        font-family: "Literata36";
+        src: url("pdf/Literata_36pt/Literata_36pt-Bold.ttf");
+        font-weight: 600;
+      }
+      @font-face {
+        font-family: "Literata36";
+        src: url("pdf/Literata_36pt/Literata_36pt-BoldItalic.ttf");
+        font-weight: 600;
+        font-style: italic;
+      }
+      @font-face {
+        font-family: "Literata36";
+        src: url("pdf/Literata_36pt/Literata_36pt-Light.ttf");
+        font-weight: 300;
+      }
+      @font-face {
+        font-family: "Literata36";
+        src: url("pdf/Literata_36pt/Literata_36pt-LightItalic.ttf");
+        font-weight: 300;
+        font-style: italic;
+      }
+      #TOC {
+        page: empty;
+      }
+
+      @page {
+        size: A4;
+        margin: 2.75cm 3.5cm;
+        @top-center {
+          content: string(chapter);
+          font-style: italic;
+          font-size: 1rem;
+        }
+        @bottom-center {
+          content: counter(page);
+        }
+      }
+
+      @page :left {
+        @top-center {
+          content: string(chapter);
+          font-style: italic;
+          font-size: 1rem;
+        }
+      }
+
+      @page :right {
+        @top-center {
+          content: string(title);
+          font-style: italic;
+          font-size: 1rem;
+        }
+      }
+      @page empty {
+        margin: 2.5cm 3cm;
+        @top-center {
+          content: "";
+        }
+        @bottom-center {
+          content: "";
+        }
+      }
+
+      html {
+        hyphens: auto;
+      }
+      html {
+        font-family: Literata, "Iowan Old Style", "Sitka Text", Palatino,
+          "Book Antiqua", serif;
+      }
+
+      /* Base */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Literata, "Iowan Old Style", "Sitka Text", Palatino,
+          "Book Antiqua", serif;
+        margin: 0;
+        line-height: 1.35;
+      }
+      hr {
+        border: none;
+        border-bottom: 1px solid #333;
+        width: 50%;
+        margin: 0 auto;
+        padding-top: 2.5em;
+        margin-bottom: 2.5em;
+      }
+
+      blockquote {
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+        margin-left: 2.5em;
+      }
+      blockquote,
+      blockquote p {
+        font-size: 1rem;
+        line-height: 1.2;
+      }
+
+      a:link {
+        color: #003366;
+        position: relative;
+      }
+      a:visited {
+        color: #620;
+      }
+      a:hover {
+        color: #620;
+      }
+
+      [aria-hidden="true"] {
+        display: none;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      p + p {
+        text-indent: 1.5rem;
+      }
+
+      ol,
+      ol + p,
+      ul + p,
+      dl + p,
+      blockquote + p,
+      blockquote > p + p,
+      figure + p,
+      table + p,
+      ul,
+      dl,
+      blockquote,
+      figure,
+      table,
+      hr,
+      section,
+      article,
+      details,
+      figcaption {
+        padding-top: 1.1em;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+        text-align: left;
+        text-indent: 0;
+      }
+
+      p,
+      blockquote {
+        text-align: justify;
+      }
+      h2 {
+        string-set: chapter content();
+        font-size: 5.5rem;
+        font-weight: 600;
+        padding: 0.5em 0;
+        margin: 2em 0 0;
+        line-height: 1.2;
+        text-align: center;
+      }
+      #toc-title {
+        page-break-after: avoid;
+        page-break-before: avoid;
+        text-align: left;
+        padding: 0;
+        margin: 6rem 0 3rem;
+        font-size: 2rem;
+      }
+
+      main h2 {
+        /* page: headingpage; */
+        page-break-after: always;
+        counter-increment: chapterCounter;
+      }
+
+      #toc-title::before,
+      #toc-title::after {
+        display: none;
+      }
+      h2 + p::before {
+        content: " ";
+        border-top: 1px solid;
+        width: 18rem;
+        height: 5px;
+        margin: 2.5rem auto;
+        display: block;
+      }
+
+      h2 + p {
+        margin-top: 5rem;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav id="TOC" role="doc-toc">
+      <h2 id="toc-title">Contents</h2>
+      <ul>
+        <li><a href="#i-am-vice">I am Vice</a></li>
+        <li><a href="#i-am-folly">I am Folly</a></li>
+        <li><a href="#i-am-temptation">I am Temptation</a></li>
+        <li><a href="#i-am-gluttony">I am Gluttony</a></li>
+        <li><a href="#i-am-avarice">I am Avarice</a></li>
+        <li><a href="#i-am-vanity">I am Vanity</a></li>
+        <li><a href="#i-am-sloth">I am Sloth</a></li>
+        <li><a href="#i-am-tenacity">I am Tenacity</a></li>
+        <li><a href="#summary">Summary</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h2 id="i-am-vice">I am Vice</h2>
+      <p>
+        Online debates in web and general software development are a sport.
+        People rarely change their minds, standards are minted in a different
+        room with different people, and it would be unusual for it to affect the
+        decisions made by any of the participants or observers.
+      </p>
+    </main>
+  </body>
+</html>
