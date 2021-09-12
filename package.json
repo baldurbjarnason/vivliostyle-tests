@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@vivliostyle/cli": "^4.1.0",
+    "pagedjs-cli": "^0.1.3"
+  }
+}

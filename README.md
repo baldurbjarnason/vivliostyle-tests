@@ -20,7 +20,7 @@ This is a repeat of the cover and contents bug where the first page, which shoul
 
 ## Italics
 
-All of the Vivliostyle examples in this repository have a bug where it successfully applies the custom font to body text but not to the header. It uses the proper font but applies a fake italic slanted style instead of the provided italic font.
+All of the Vivliostyle examples in this repository have a bug where it successfully applies the custom font to body text but not to the header. It uses the fallback font with a fake italic slanted style instead of the provided italic font. The font is a free Google font called Literata and is included in this repository.
 
 ## Not Selector
 
